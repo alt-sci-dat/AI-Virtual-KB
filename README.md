@@ -21,9 +21,9 @@ This project aims to bridge the gap between the real world and augmented environ
 - Enable text input at cursor position using pynput
 - Move beyond traditional physical input technologies
 
-## Quick Download
+## Quick Download (Not yet Released)
 
-### For macOS Users
+### For macOS Users (Coming Soon..)
 1. Download the latest release from the [Releases](https://github.com/alt-sci-dat/AI-Virtual-KB/releases) page
 2. Download the `AI_Virtual_Keyboard.dmg` file
 3. Double-click the DMG file to mount it
@@ -31,7 +31,7 @@ This project aims to bridge the gap between the real world and augmented environ
 5. Launch from Applications
 6. Grant camera permissions when prompted
 
-### For Windows Users
+### For Windows Users (Coming Soon..)
 1. Download the latest release from the [Releases](https://github.com/alt-sci-dat/AI-Virtual-KB/releases) page
 2. Download the `AI_Virtual_Keyboard_Setup.exe` file
 3. Run the installer and follow the installation wizard
