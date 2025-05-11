@@ -1,23 +1,18 @@
 #!/bin/bash
 
-echo "Installing AI Virtual Keyboard..."
-
-# Check if Python is installed
-if ! command -v python3 &> /dev/null; then
-    echo "Python 3 is not installed. Please install Python 3.7 or higher."
+# Check if running on macOS
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    echo "This installer is for macOS only"
     exit 1
 fi
 
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
+# Create Applications directory if it doesn't exist
+mkdir -p ~/Applications
 
-# Install requirements
-pip install -r requirements.txt
+# Copy the app to Applications
+cp -R "AI_Virtual_Keyboard.app" ~/Applications/
 
-# Build the application
-python setup.py py2app
+# Set permissions
+chmod +x ~/Applications/AI_Virtual_Keyboard.app/Contents/MacOS/AI_Virtual_Keyboard
 
-echo "Installation complete!"
-echo "You can find the application in the dist folder."
-echo "Please grant camera permissions when running the application." 
+echo "Installation complete! You can find AI Virtual Keyboard in your Applications folder." 

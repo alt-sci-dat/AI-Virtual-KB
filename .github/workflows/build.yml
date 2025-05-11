@@ -1,0 +1,89 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          brew install create-dmg
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install py2app
+          
+      - name: Build macOS app
+        run: |
+          chmod +x deploy/build_macos.sh
+          ./deploy/build_macos.sh
+          
+      - name: Upload DMG
+        uses: actions/upload-artifact@v2
+        with:
+          name: AI_Virtual_Keyboard.dmg
+          path: dist/AI_Virtual_Keyboard.dmg
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          
+      - name: Install NSIS
+        uses: nsis/setup-nsis@v1
+        with:
+          version: '3.08'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+          
+      - name: Build Windows app
+        run: |
+          deploy\build_windows.bat
+          
+      - name: Upload EXE
+        uses: actions/upload-artifact@v2
+        with:
+          name: AI_Virtual_Keyboard_Setup.exe
+          path: dist/AI_Virtual_Keyboard_Setup.exe
+
+  release:
+    needs: [build-macos, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download macOS build
+        uses: actions/download-artifact@v2
+        with:
+          name: AI_Virtual_Keyboard.dmg
+          
+      - name: Download Windows build
+        uses: actions/download-artifact@v2
+        with:
+          name: AI_Virtual_Keyboard_Setup.exe
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            AI_Virtual_Keyboard.dmg
+            AI_Virtual_Keyboard_Setup.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

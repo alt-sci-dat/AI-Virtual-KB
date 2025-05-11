@@ -1,24 +1,14 @@
 @echo off
 echo Installing AI Virtual Keyboard...
 
-REM Check if Python is installed
-python --version >nul 2>&1
-if errorlevel 1 (
-    echo Python is not installed. Please install Python 3.7 or higher.
-    exit /b 1
-)
+:: Create Program Files directory if it doesn't exist
+if not exist "%ProgramFiles%\AI Virtual Keyboard" mkdir "%ProgramFiles%\AI Virtual Keyboard"
 
-REM Create virtual environment
-python -m venv venv
-call venv\Scripts\activate.bat
+:: Copy files
+xcopy /E /I /Y "AI_Virtual_Keyboard" "%ProgramFiles%\AI Virtual Keyboard"
 
-REM Install requirements
-pip install -r requirements.txt
+:: Create desktop shortcut
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\AI Virtual Keyboard.lnk');$s.TargetPath='%ProgramFiles%\AI Virtual Keyboard\AI_Virtual_Keyboard.exe';$s.Save()"
 
-REM Build the application
-pyinstaller --onefile --windowed --name "AI_Virtual_Keyboard" main.py
-
-echo Installation complete!
-echo You can find the executable in the dist folder.
-echo Please grant camera permissions when running the application.
+echo Installation complete! You can find AI Virtual Keyboard in your Start menu and desktop.
 pause 

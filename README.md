@@ -25,15 +25,18 @@ This project aims to bridge the gap between the real world and augmented environ
 
 ### For macOS Users
 1. Download the latest release from the [Releases](https://github.com/alt-sci-dat/AI-Virtual-KB/releases) page
-2. Extract the downloaded file
-3. Double-click `AI_Virtual_Keyboard.app`
-4. Grant camera permissions when prompted
+2. Download the `AI_Virtual_Keyboard.dmg` file
+3. Double-click the DMG file to mount it
+4. Drag the app to your Applications folder
+5. Launch from Applications
+6. Grant camera permissions when prompted
 
 ### For Windows Users
 1. Download the latest release from the [Releases](https://github.com/alt-sci-dat/AI-Virtual-KB/releases) page
-2. Extract the downloaded file
-3. Double-click `AI_Virtual_Keyboard.exe`
-4. Grant camera permissions when prompted
+2. Download the `AI_Virtual_Keyboard_Setup.exe` file
+3. Run the installer and follow the installation wizard
+4. Launch from the Start menu or desktop shortcut
+5. Grant camera permissions when prompted
 
 ## Usage
 
