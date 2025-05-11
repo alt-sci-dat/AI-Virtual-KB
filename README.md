@@ -2,8 +2,6 @@
 
 A virtual keyboard controlled by hand gestures using computer vision. This application allows you to type using your hand movements captured through your webcam.
 
-![Demo](https://github.com/vinit714/AI-Virtual-Keyboard/assets/52816788/f90b74b9-a1c3-4fbc-b9cf-b693512c1daf)
-
 ## Features
 
 - Real-time hand gesture recognition
@@ -11,17 +9,28 @@ A virtual keyboard controlled by hand gestures using computer vision. This appli
 - Click detection using thumb and index finger
 - Visual feedback for hand tracking
 - Support for all basic keyboard characters
+- Accessibility-focused design for differently-abled users
+
+## Project Overview
+
+This project aims to bridge the gap between the real world and augmented environment by creating a mixed-reality system. It provides an immersive augmented experience that is gesture-enabled, using only a webcam and OpenCV libraries.
+
+### Key Objectives
+- Create a virtual keyboard that can type letters by detecting hand movements
+- Implement hand position and gesture recognition using OpenCV, MediaPipe, and CVZone
+- Enable text input at cursor position using pynput
+- Move beyond traditional physical input technologies
 
 ## Quick Download
 
 ### For macOS Users
-1. Download the latest release from the [Releases](https://github.com/yourusername/AI-Virtual-Keyboard/releases) page
+1. Download the latest release from the [Releases](https://github.com/alt-sci-dat/AI-Virtual-KB/releases) page
 2. Extract the downloaded file
 3. Double-click `AI_Virtual_Keyboard.app`
 4. Grant camera permissions when prompted
 
 ### For Windows Users
-1. Download the latest release from the [Releases](https://github.com/yourusername/AI-Virtual-Keyboard/releases) page
+1. Download the latest release from the [Releases](https://github.com/alt-sci-dat/AI-Virtual-KB/releases) page
 2. Extract the downloaded file
 3. Double-click `AI_Virtual_Keyboard.exe`
 4. Grant camera permissions when prompted
@@ -32,6 +41,30 @@ A virtual keyboard controlled by hand gestures using computer vision. This appli
 2. Move your hand to position the crosshair over a key
 3. Press 'c' to click the key
 4. Press 'q' to quit the application
+
+## Technical Implementation
+
+### Keyboard Layout Model
+- Implements QWERTY layout using cv2.rectangle
+- Creates semi-transparent virtual layout
+- Superimposes on video feed
+
+### Palm Detection Model
+- Uses MediaPipe for palm detection
+- Efficient bounding box estimation
+- Handles two-hand self-occlusion cases
+- Optimized for palm detection using square bounding boxes
+
+### Hand Detection Model
+- Precise keypoint localization of 21 3D hand-knuckle coordinates
+- Robust to partially visible hands and self-occlusions
+- Uses MediaPipe for accurate hand tracking
+
+### Click Detection
+- Measures distance between thumb and index finger landmarks
+- Registers click when distance is less than 30 pixels
+- Maps click position to keyboard layout
+- Updates text input accordingly
 
 ## System Requirements
 
@@ -44,8 +77,8 @@ A virtual keyboard controlled by hand gestures using computer vision. This appli
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/AI-Virtual-Keyboard.git
-cd AI-Virtual-Keyboard
+git clone https://github.com/alt-sci-dat/AI-Virtual-KB.git
+cd AI-Virtual-KB
 ```
 
 2. Install dependencies:
@@ -85,7 +118,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - CVZone for simplified computer vision implementation
 
 # AI-Virtual-Keyboard
-This is the project made by Vinit Mehra, Linu Shibu, and Siddharth Sawhney for the Artificial Intelligence Course.
+
 In this project, we have tried to reduce the gap between the real world and the augmented environment to produce a mixed-reality system. 
 For that purpose, we created a virtually controllable keyboard system which is created and implemented using OpenCV libraries and Python. 
 To provide an easy immersive augmented experience that is also gesture-enabled, we employ a web camera that is integrated with OpenCV libraries through a compiler. 
@@ -119,11 +152,8 @@ After the palm detection over the whole image the subsequent hand landmark model
 ![image](https://github.com/vinit714/AI-Virtual-Keyboard/assets/52816788/6a0fa029-c01d-4c9b-ae73-d4a63a1ea809)
 
 ### Click Detection
-Using the landmarks given in the hand detection model, we use a distance measuring function called detector.findDistance between the landmark points 8 and 12 to detect a click. When the distance between the point 8 (index finger) and 12 (middle finger) is less than 30 pixels, the function registers it as a click and records it position. The position recorded is then used in analogous with the keyboard layout model to determine the key pressed, which in-turn is added to the final textbox.
+Using the landmarks given in the hand detection model, we use a distance measuring function called detector.findDistance between the thumb and index finger landmarks to detect a click. When the distance between these points is less than 30 pixels, the function registers it as a click and records its position. The position recorded is then used in analogous with the keyboard layout model to determine the key pressed, which in-turn is added to the final textbox.
 
-
-## Screenshot of demo
-![image](https://github.com/vinit714/AI-Virtual-Keyboard/assets/52816788/f90b74b9-a1c3-4fbc-b9cf-b693512c1daf)
 
 
 
