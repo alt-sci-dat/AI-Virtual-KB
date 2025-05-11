@@ -30,12 +30,20 @@ ENV/
 *.swp
 *.swo
 
-# macOS
+# Build files
+*.dmg
+*.exe
+*.spec
+*.nsi
+
+# OS
 .DS_Store
+Thumbs.db
+
+# macOS
 .AppleDouble
 .LSOverride
 
 # Windows
-Thumbs.db
 ehthumbs.db
 Desktop.ini 

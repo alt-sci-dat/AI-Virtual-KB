@@ -19,11 +19,10 @@ python setup.py py2app
 # Create DMG
 create-dmg \
     --volname "AI Virtual Keyboard" \
-    --volicon "deploy/icon.icns" \
     --window-pos 200 120 \
     --window-size 800 400 \
     --icon-size 100 \
-    --icon "AI Virtual Keyboard.app" 200 190 \
+    --icon "dist/AI Virtual Keyboard.app" 200 190 \
     --hide-extension "AI Virtual Keyboard.app" \
     --app-drop-link 600 185 \
     "dist/AI_Virtual_Keyboard.dmg" \

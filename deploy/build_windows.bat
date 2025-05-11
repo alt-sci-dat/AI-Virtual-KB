@@ -14,7 +14,7 @@ if not exist venv (
 )
 
 REM Build the application
-pyinstaller --noconfirm --onefile --windowed --icon "deploy/icon.ico" --name "AI_Virtual_Keyboard" main.py
+pyinstaller --noconfirm --onefile --windowed --name "AI_Virtual_Keyboard" main.py
 
 REM Create installer using NSIS
 makensis AI_Virtual_Keyboard.nsi 

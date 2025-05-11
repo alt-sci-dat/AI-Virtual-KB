@@ -9,10 +9,10 @@ jobs:
   build-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
           
@@ -29,7 +29,7 @@ jobs:
           ./deploy/build_macos.sh
           
       - name: Upload DMG
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: AI_Virtual_Keyboard.dmg
           path: dist/AI_Virtual_Keyboard.dmg
@@ -37,15 +37,15 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
           
       - name: Install NSIS
-        uses: nsis/setup-nsis@v1
+        uses: martinussuherman/setup-nsis@v1
         with:
           version: '3.08'
           
@@ -60,7 +60,7 @@ jobs:
           deploy\build_windows.bat
           
       - name: Upload EXE
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: AI_Virtual_Keyboard_Setup.exe
           path: dist/AI_Virtual_Keyboard_Setup.exe
@@ -70,12 +70,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download macOS build
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: AI_Virtual_Keyboard.dmg
           
       - name: Download Windows build
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: AI_Virtual_Keyboard_Setup.exe
           
